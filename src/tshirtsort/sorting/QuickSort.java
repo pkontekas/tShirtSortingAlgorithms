@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import tshirtsort.MainClass;
 import tshirtsort.models.TShirt;
+import tshirtsort.utils.Utils;
 
 /**
  * @author pkontekas
@@ -48,21 +49,14 @@ public class QuickSort {
                     if (sortType) {
                         if (shirts.get(j).getSize().ordinal() < pivot.getSize().ordinal()) {
                             i++;
-
                             // swap shirts[i] and shirts[j] 
-                            Collections.swap(shirts, i, j);
-                            TShirt temp = shirts.get(i);
-                            shirts.set(i, shirts.get(j));
-                            shirts.set(j, temp);
+                            Utils.swap(shirts, i, j);
                         }
                     } else {
                         if (shirts.get(j).getSize().ordinal() > pivot.getSize().ordinal()) {
                             i++;
-
                             // swap shirts[i] and shirts[j] 
-                            TShirt temp = shirts.get(i);
-                            shirts.set(i, shirts.get(j));
-                            shirts.set(j, temp);
+                            Utils.swap(shirts, i, j);
                         }
                     }
                     break;
@@ -71,20 +65,14 @@ public class QuickSort {
                     if (sortType) {
                         if (shirts.get(j).getColor().ordinal() < pivot.getColor().ordinal()) {
                             i++;
-
                             // swap shirts[i] and shirts[j] 
-                            TShirt temp = shirts.get(i);
-                            shirts.set(i, shirts.get(j));
-                            shirts.set(j, temp);
+                            Utils.swap(shirts, i, j);
                         }
                     } else {
                         if (shirts.get(j).getColor().ordinal() > pivot.getColor().ordinal()) {
                             i++;
-
                             // swap shirts[i] and shirts[j] 
-                            TShirt temp = shirts.get(i);
-                            shirts.set(i, shirts.get(j));
-                            shirts.set(j, temp);
+                            Utils.swap(shirts, i, j);
                         }
                     }
                     break;
@@ -93,38 +81,27 @@ public class QuickSort {
                     if (sortType) {
                         if (shirts.get(j).getFabric().ordinal() < pivot.getFabric().ordinal()) {
                             i++;
-
                             // swap shirts[i] and shirts[j] 
-                            TShirt temp = shirts.get(i);
-                            shirts.set(i, shirts.get(j));
-                            shirts.set(j, temp);
+                            Utils.swap(shirts, i, j);
                         }
                     } else {
                         if (shirts.get(j).getFabric().ordinal() > pivot.getFabric().ordinal()) {
                             i++;
-
                             // swap shirts[i] and shirts[j] 
-                            TShirt temp = shirts.get(i);
-                            shirts.set(i, shirts.get(j));
-                            shirts.set(j, temp);
+                            Utils.swap(shirts, i, j);
                         }
                     }
                     break;
             }
-
         }
-
-        // swap shirts[i+1] and shirts[high] (or pivot) 
-        TShirt temp = shirts.get(i + 1);
-        shirts.set(i + 1, shirts.get(high));
-        shirts.set(high, temp);
-
+        // swap shirts[i+1] and shirts[high] (or pivot)
+        Utils.swap(shirts, i+1, high);
         return i + 1;
     }
 
     // quicksort
     private static void quickSort(QuickSort qs, List<TShirt> shirts, boolean sortType, int sortByProperty) {
-        System.out.println("/// ------------------------- ///");
+        System.out.println("/// ---------------------------------- ///");
         double startTime;
         double endTime;
         switch (sortByProperty) {
@@ -165,22 +142,22 @@ public class QuickSort {
                 }
                 break;
         }
-
-        for (TShirt shirt : shirts) {
-            System.out.println(shirt);
-        }
+        Utils.printShirtList(shirts);
     }
 
-    public static void performQuickSort(QuickSort qs, List<TShirt> shirts) {
+    public static void performQuickSortBySize(QuickSort qs, List<TShirt> shirts) {
         quickSort(qs, shirts, true, 1); // Size ASC
         quickSort(qs, shirts, false, 1); // Size DESC
+    }
 
+    public static void performQuickSortByColor(QuickSort qs, List<TShirt> shirts) {
         quickSort(qs, shirts, true, 2); // Color ASC
         quickSort(qs, shirts, false, 2); // Color DESC
+    }
 
+    public static void performQuickSortByFabric(QuickSort qs, List<TShirt> shirts) {
         quickSort(qs, shirts, true, 3); // Fabric ASC
         quickSort(qs, shirts, false, 3); // Fabric DESC
-
     }
 
     public static void performQuickSortPerProperty(QuickSort qs, List<TShirt> shirts, boolean sortType) {
@@ -283,16 +260,12 @@ public class QuickSort {
             bySizeColorAndFabric.addAll(temp);
         }
         endTime = System.currentTimeMillis();
-        System.out.println("---------------------");
+        System.out.println("/// ---------------------------------- ///");
         if (sortType) {
             System.out.println("Time Lapsed for QuickSort per Property ASC: " + (endTime - startTime));
         } else {
             System.out.println("Time Lapsed for QuickSort per Property DESC: " + (endTime - startTime));
         }
-        System.out.println("---------------------");
-        bySizeColorAndFabric.forEach((shirt) -> {
-            System.out.println(shirt);
-        });
+        Utils.printShirtList(bySizeColorAndFabric);
     }
-
 }

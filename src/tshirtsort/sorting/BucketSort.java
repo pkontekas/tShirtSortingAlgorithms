@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import tshirtsort.MainClass;
 import tshirtsort.models.TShirt;
+import tshirtsort.utils.Utils;
 
 /**
  * @author pkontekas
@@ -59,13 +60,17 @@ public class BucketSort {
         return sortedShirts;
     }
 
-    public static void performBucketSort(BucketSort bucket, List<TShirt> shirts) {
+    public static void performBucketSortBySize(BucketSort bucket, List<TShirt> shirts) {
         bucketSort(bucket, shirts, true, 1); // Size ASC
         bucketSort(bucket, shirts, false, 1); // Size DESC
+    }
 
+    public static void performBucketSortByColor(BucketSort bucket, List<TShirt> shirts) {
         bucketSort(bucket, shirts, true, 2); // Color ASC
         bucketSort(bucket, shirts, false, 2); // Color DESC
+    }
 
+    public static void performBucketSortByFabric(BucketSort bucket, List<TShirt> shirts) {
         bucketSort(bucket, shirts, true, 3); // Fabric ASC
         bucketSort(bucket, shirts, false, 3); // Fabric DESC
     }
@@ -77,7 +82,7 @@ public class BucketSort {
         // sortByProperty == 1 -- Size
         // sortByProperty == 2 -- Color 
         // sortByProperty == 3 -- Fabric 
-        System.out.println("/// ------------------------- ///");
+        System.out.println("/// ---------------------------------- ///");
         double startTime;
         double endTime;
         List<TShirt> sorted_shirts = new ArrayList<>();
@@ -119,9 +124,7 @@ public class BucketSort {
                 }
                 break;
         }
-        for (TShirt shirt : sorted_shirts) {
-            System.out.println(shirt);
-        }
+        Utils.printShirtList(sorted_shirts);
     }
 
     public static void performBucketSortPerProperty(BucketSort bucket, List<TShirt> shirts, boolean sortType) {
@@ -224,15 +227,12 @@ public class BucketSort {
             bySizeColorAndFabric.addAll(temp);
         }
         endTime = System.currentTimeMillis();
-        System.out.println("---------------------");
+        System.out.println("/// ---------------------------------- ///");
         if (sortType) {
             System.out.println("Time Lapsed for BucketSort per Property ASC: " + (endTime - startTime));
         } else {
             System.out.println("Time Lapsed for BucketSort per Property DESC: " + (endTime - startTime));
         }
-        System.out.println("---------------------");
-        bySizeColorAndFabric.forEach((shirt) -> {
-            System.out.println(shirt);
-        });
+        Utils.printShirtList(bySizeColorAndFabric);
     }
 }

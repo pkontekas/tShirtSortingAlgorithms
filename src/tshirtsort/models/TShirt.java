@@ -19,15 +19,15 @@ Fabric, {WOOL, COTTON, POLYESTER, RAYON, LINEN, CASHMERE, SILK}
 public class TShirt {
 
     private final float basePrice = 8;
-    private String name;
+    private String type;
     private Color color;
     private Size size;
     private Fabric fabric;
     private float price;
-    public static String[] names;
+    public static String[] types;
 
     static {
-        names = new String[]{"Aloha", "Baseball", "Camp", "Henley", "Pocket", "Douche Bag",
+        types = new String[]{"Aloha", "Baseball", "Camp", "Henley", "Pocket", "Douche Bag",
             "Epaulette", "Lumberjack", "Granddad", "Golf", "Polo", "Ringer", "Muscle",
             "Tuxedo", "Tunic", "Sweatshirt", "Crew-Neck", "V-Neck", "Baby Doll"};
     }
@@ -36,7 +36,7 @@ public class TShirt {
     }
 
     public TShirt(String name, Color color, Size size, Fabric fabric, float price) {
-        this.name = name;
+        this.type = name;
         this.color = color;
         this.size = size;
         this.fabric = fabric;
@@ -54,12 +54,12 @@ public class TShirt {
         this.price = this.basePrice + price;
     }
 
-    public String getName() {
-        return name;
+    public String getType() {
+        return type;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setType(String type) {
+        this.type = type;
     }
 
     public Color getColor() {
@@ -89,7 +89,7 @@ public class TShirt {
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 53 * hash + Objects.hashCode(this.name);
+        hash = 53 * hash + Objects.hashCode(this.type);
         hash = 53 * hash + Objects.hashCode(this.color);
         hash = 53 * hash + Objects.hashCode(this.size);
         hash = 53 * hash + Objects.hashCode(this.fabric);
@@ -112,7 +112,7 @@ public class TShirt {
         if (Float.floatToIntBits(this.price) != Float.floatToIntBits(other.price)) {
             return false;
         }
-        if (!Objects.equals(this.name, other.name)) {
+        if (!Objects.equals(this.type, other.type)) {
             return false;
         }
         if (this.color != other.color) {
@@ -126,6 +126,6 @@ public class TShirt {
 
     @Override
     public String toString() {
-        return "TShirt{" + "name=" + name + ", size=" + size + ", color=" + color + ", fabric=" + fabric + ", price=" + price + '}';
+        return "TShirt{" + "type = " + type + ", size = " + size + ", color = " + color + ", fabric = " + fabric + ", price = " + price + '}';
     }
 }

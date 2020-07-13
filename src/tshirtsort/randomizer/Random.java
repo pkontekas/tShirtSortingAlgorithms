@@ -3,7 +3,7 @@ package tshirtsort.randomizer;
 import tshirtsort.models.Color;
 import tshirtsort.models.Fabric;
 import tshirtsort.models.Size;
-import static tshirtsort.models.TShirt.names;
+import static tshirtsort.models.TShirt.types;
 
 /**
  * @author pkontekas
@@ -35,9 +35,9 @@ public class Random {
         return r.nextInt((max - min) + 1) + min;
     }
 
-    public static String getRandomName() {
+    public static String getRandomType() {
         java.util.Random random = new java.util.Random();
-        return names[random.nextInt(names.length)];
+        return types[random.nextInt(types.length)];
     }
 
 }

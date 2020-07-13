@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import tshirtsort.MainClass;
 import tshirtsort.models.TShirt;
+import tshirtsort.utils.Utils;
 
 /**
  * @author pkontekas
@@ -25,11 +26,11 @@ public class BubbleSort {
                         // ASC
                         if (sortType) {
                             if (shirts.get(j).getSize().ordinal() > shirts.get(j + 1).getSize().ordinal()) {
-                                swap(shirts, j);
+                                Utils.swap(shirts, j, j+1);
                             }
                         } else { // DESC
                             if (shirts.get(j).getSize().ordinal() < shirts.get(j + 1).getSize().ordinal()) {
-                                swap(shirts, j);
+                                Utils.swap(shirts, j, j+1);
                             }
                         }
                         break;
@@ -38,11 +39,11 @@ public class BubbleSort {
                         // ASC
                         if (sortType) {
                             if (shirts.get(j).getColor().ordinal() > shirts.get(j + 1).getColor().ordinal()) {
-                                swap(shirts, j);
+                                Utils.swap(shirts, j, j+1);
                             }
                         } else { // DESC
                             if (shirts.get(j).getColor().ordinal() < shirts.get(j + 1).getColor().ordinal()) {
-                                swap(shirts, j);
+                                Utils.swap(shirts, j, j+1);
                             }
                         }
                         break;
@@ -51,11 +52,11 @@ public class BubbleSort {
                         // ASC
                         if (sortType) {
                             if (shirts.get(j).getFabric().ordinal() > shirts.get(j + 1).getFabric().ordinal()) {
-                                swap(shirts, j);
+                                Utils.swap(shirts, j, j+1);
                             }
                         } else { // DESC
                             if (shirts.get(j).getFabric().ordinal() < shirts.get(j + 1).getFabric().ordinal()) {
-                                swap(shirts, j);
+                                Utils.swap(shirts, j, j+1);
                             }
                         }
                         break;
@@ -106,18 +107,20 @@ public class BubbleSort {
                 }
                 break;
         }
-        for (TShirt shirt : shirts) {
-            System.out.println(shirt);
-        }
+        Utils.printShirtList(shirts);
     }
 
-    public static void performBubbleSort(BubbleSort bubble, List<TShirt> shirts) {
+    public static void performBubbleSortBySize(BubbleSort bubble, List<TShirt> shirts) {
         bubbleSort(bubble, shirts, true, 1); // Size ASC
         bubbleSort(bubble, shirts, false, 1); // Size DESC
+    }
 
+    public static void performBubbleSortByColor(BubbleSort bubble, List<TShirt> shirts) {
         bubbleSort(bubble, shirts, true, 2); // Color ASC
         bubbleSort(bubble, shirts, false, 2); // Color DESC
+    }
 
+    public static void performBubbleSortByFabric(BubbleSort bubble, List<TShirt> shirts) {
         bubbleSort(bubble, shirts, true, 3); // Fabric ASC
         bubbleSort(bubble, shirts, false, 3); // Fabric DESC
     }
@@ -200,10 +203,10 @@ public class BubbleSort {
         List<TShirt> temp = new ArrayList<>();
         int currentSize = 0;
         int currentColor = 0;
-        for (TShirt ts : bySizeAndColor) {
-            if (ts.getColor().ordinal() == currentColor && ts.getSize().ordinal() == currentSize) {
+        for (TShirt tShirt : bySizeAndColor) {
+            if (tShirt.getColor().ordinal() == currentColor && tShirt.getSize().ordinal() == currentSize) {
                 //found same tshirt size and color, add to temp list
-                temp.add(ts);
+                temp.add(tShirt);
             } else {
                 //different tshirt, put temp list to bySize and Color and Fabric then empty temp list
                 if (temp.size() > 0) {
@@ -211,9 +214,9 @@ public class BubbleSort {
                     bySizeColorAndFabric.addAll(temp);
                     temp.clear();
                 }
-                temp.add(ts);
-                currentSize = ts.getSize().ordinal();
-                currentColor = ts.getColor().ordinal();
+                temp.add(tShirt);
+                currentSize = tShirt.getSize().ordinal();
+                currentColor = tShirt.getColor().ordinal();
             }
         }
         if (temp.size() > 0) {
@@ -221,23 +224,12 @@ public class BubbleSort {
             bySizeColorAndFabric.addAll(temp);
         }
         endTime = System.currentTimeMillis();
-        System.out.println("---------------------");
+        System.out.println("/// ---------------------------------- ///");
         if (sortType) {
             System.out.println("Time Lapsed for Bubblesort per Property ASC: " + (endTime - startTime));
         } else {
             System.out.println("Time Lapsed for Bubblesort per Property DESC: " + (endTime - startTime));
         }
-        System.out.println("---------------------");
-        bySizeColorAndFabric.forEach((shirt) -> {
-            System.out.println(shirt);
-        });
+        Utils.printShirtList(bySizeColorAndFabric);
     }
-
-    private void swap(List<TShirt> shirts, int a) {
-        //method to swap a with a + 1 in a list
-        TShirt temp = shirts.get(a);
-        shirts.set(a, shirts.get(a + 1));
-        shirts.set(a + 1, temp);
-    }
-
 }
