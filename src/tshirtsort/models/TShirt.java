@@ -41,10 +41,6 @@ public class TShirt {
         setPrice(price); // this.price = price; this is wrong!!!
     }
 
-    public double getPrice() {
-        return price;
-    }
-
     // base price = 8
     // setPrice(22.75)
     // price 8+22.75 = 30.75 + material price
@@ -52,36 +48,16 @@ public class TShirt {
         this.price = this.basePrice + price;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
     public Color getColor() {
         return color;
-    }
-
-    public void setColor(Color color) {
-        this.color = color;
     }
 
     public Size getSize() {
         return size;
     }
 
-    public void setSize(Size size) {
-        this.size = size;
-    }
-
     public Fabric getFabric() {
         return fabric;
-    }
-
-    public void setFabric(Fabric fabric) {
-        this.fabric = fabric;
     }
 
     @Override
