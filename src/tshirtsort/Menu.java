@@ -44,7 +44,6 @@ public class Menu {
             System.out.println("1. QuickSort by Size.\n2. QuickSort by Color.\n3. QuickSort by Fabric.\n"
                     + "4. QuickSort by Size/Color/Fabric ASC.\n5. QuickSort by Size/Color/Fabric DESC.\n6. Exit");
             choice = Validator.getValidMenuChoice(6, scan);
-            //System.out.println("---------------------");
             switch (choice) {
                 case 1:
                     QuickSort.performQuickSortBySize(quick, shirts);
@@ -78,7 +77,6 @@ public class Menu {
             System.out.println("1. BubbleSort by Size.\n2. BubbleSort by Color.\n3. BubbleSort by Fabric.\n"
                     + "4. BubbleSort by Size/Color/Fabric ASC.\n5. BubbleSort by Size/Color/Fabric DESC.\n6. Exit.");
             choice = Validator.getValidMenuChoice(6, scan);
-            //System.out.println("---------------------");
             switch (choice) {
                 case 1:
                     BubbleSort.performBubbleSortBySize(bubble, shirts);
@@ -112,7 +110,6 @@ public class Menu {
             System.out.println("1. BucketSort by Size.\n2. BucketSort by Color.\n3. BucketSort by Fabric.\n"
                     + "4. BucketSort by Size/Color/Fabric ASC.\n5. BucketSort by Size/Color/Fabric DESC.\n6. Exit.");
             choice = Validator.getValidMenuChoice(6, scan);
-            //System.out.println("---------------------");
             switch (choice) {
                 case 1:
                     BucketSort.performBucketSortBySize(bucket, shirts);

@@ -16,7 +16,8 @@ public class RandomTShirt {
         Size size = r.getRandomSize();
         Fabric fabric = r.getRandomFabric();
         double materialCost = color.getPrice() + size.getPrice() + fabric.getPrice();
-        TShirt t1 = new TShirt(Random.getRandomType(), color, size, fabric, r.getRandomNumberInRange(0, 20) + materialCost);
+        TShirt t1 = new TShirt(Random.getRandomType(), color, size, fabric,
+                r.getRandomNumberInRange(0, 20) + materialCost);
         return (t1);
     }
 }

@@ -10,8 +10,8 @@ import tshirtsort.utils.Utils;
  */
 public class QuickSort {
 
-    // low = shirts.get(low), low = 4
-    // high = shirts.get(high), high = 0
+    // low = shirts.get(low), low = 0
+    // high = shirts.get(high), high = 6
     // boolean sortType, sortType == true, ASC --  sortType == false, DESC
     // int sortByProperty 
     // sortByProperty == 1 -- Size
@@ -53,7 +53,6 @@ public class QuickSort {
                     } else {
                         if (shirts.get(j).getSize().ordinal() > pivot.getSize().ordinal()) {
                             i++;
-                            // swap shirts[i] and shirts[j] 
                             Utils.swap(shirts, i, j);
                         }
                     }
@@ -63,13 +62,11 @@ public class QuickSort {
                     if (sortType) {
                         if (shirts.get(j).getColor().ordinal() < pivot.getColor().ordinal()) {
                             i++;
-                            // swap shirts[i] and shirts[j] 
                             Utils.swap(shirts, i, j);
                         }
                     } else {
                         if (shirts.get(j).getColor().ordinal() > pivot.getColor().ordinal()) {
                             i++;
-                            // swap shirts[i] and shirts[j] 
                             Utils.swap(shirts, i, j);
                         }
                     }
@@ -85,7 +82,6 @@ public class QuickSort {
                     } else {
                         if (shirts.get(j).getFabric().ordinal() > pivot.getFabric().ordinal()) {
                             i++;
-                            // swap shirts[i] and shirts[j] 
                             Utils.swap(shirts, i, j);
                         }
                     }
