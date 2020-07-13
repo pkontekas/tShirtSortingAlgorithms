@@ -2,7 +2,6 @@ package tshirtsort.sorting;
 
 import java.util.ArrayList;
 import java.util.List;
-import tshirtsort.MainClass;
 import tshirtsort.models.TShirt;
 import tshirtsort.utils.Utils;
 
@@ -160,11 +159,11 @@ public class BucketSort {
 //        }
 
         // step 3 - Get the ones of the same Size in a sublist
-        MainClass.SublistBounds[] bounds = new MainClass.SublistBounds[7];
+        SublistBounds[] bounds = new SublistBounds[7];
         int counter = 0; // shirts.get(counter) <-- 0
         if (sortType == true) {//ASC
             for (int i = 0; i < 7; i++) {
-                bounds[i] = new MainClass.SublistBounds();
+                bounds[i] = new SublistBounds();
                 if (sBySize[i] == 0) {
                     bounds[i].start = -1;
                     bounds[i].end = -1;
@@ -178,7 +177,7 @@ public class BucketSort {
             }
         } else {//DESC
             for (int i = 6; i >= 0; i--) {
-                bounds[i] = new MainClass.SublistBounds();
+                bounds[i] = new SublistBounds();
                 if (sBySize[i] == 0) {
                     bounds[i].start = -1;
                     bounds[i].end = -1;
@@ -206,10 +205,10 @@ public class BucketSort {
         List<TShirt> temp = new ArrayList<>();
         int currentSize = 0;
         int currentColor = 0;
-        for (TShirt ts : bySizeAndColor) {
-            if (ts.getColor().ordinal() == currentColor && ts.getSize().ordinal() == currentSize) {
+        for (TShirt tShirt : bySizeAndColor) {
+            if (tShirt.getColor().ordinal() == currentColor && tShirt.getSize().ordinal() == currentSize) {
                 //found same tshirt size and color, add to temp list
-                temp.add(ts);
+                temp.add(tShirt);
             } else {
                 //different tshirt, put temp list to bySize and Color and Fabric then empty temp list
                 if (temp.size() > 0) {
@@ -217,9 +216,9 @@ public class BucketSort {
                     bySizeColorAndFabric.addAll(temp);
                     temp.clear();
                 }
-                temp.add(ts);
-                currentSize = ts.getSize().ordinal();
-                currentColor = ts.getColor().ordinal();
+                temp.add(tShirt);
+                currentSize = tShirt.getSize().ordinal();
+                currentColor = tShirt.getColor().ordinal();
             }
         }
         if (temp.size() > 0) {

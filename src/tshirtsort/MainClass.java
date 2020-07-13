@@ -26,10 +26,4 @@ public class MainClass {
         Menu menu = new Menu();
         menu.welcomeMenu();
     }
-
-    public static class SublistBounds {
-
-        public int start;
-        public int end;
-    }
 }

@@ -2,7 +2,6 @@ package tshirtsort.sorting;
 
 import java.util.ArrayList;
 import java.util.List;
-import tshirtsort.MainClass;
 import tshirtsort.models.TShirt;
 import tshirtsort.utils.Utils;
 
@@ -26,11 +25,11 @@ public class BubbleSort {
                         // ASC
                         if (sortType) {
                             if (shirts.get(j).getSize().ordinal() > shirts.get(j + 1).getSize().ordinal()) {
-                                Utils.swap(shirts, j, j+1);
+                                Utils.swap(shirts, j, j + 1);
                             }
                         } else { // DESC
                             if (shirts.get(j).getSize().ordinal() < shirts.get(j + 1).getSize().ordinal()) {
-                                Utils.swap(shirts, j, j+1);
+                                Utils.swap(shirts, j, j + 1);
                             }
                         }
                         break;
@@ -39,11 +38,11 @@ public class BubbleSort {
                         // ASC
                         if (sortType) {
                             if (shirts.get(j).getColor().ordinal() > shirts.get(j + 1).getColor().ordinal()) {
-                                Utils.swap(shirts, j, j+1);
+                                Utils.swap(shirts, j, j + 1);
                             }
                         } else { // DESC
                             if (shirts.get(j).getColor().ordinal() < shirts.get(j + 1).getColor().ordinal()) {
-                                Utils.swap(shirts, j, j+1);
+                                Utils.swap(shirts, j, j + 1);
                             }
                         }
                         break;
@@ -52,11 +51,11 @@ public class BubbleSort {
                         // ASC
                         if (sortType) {
                             if (shirts.get(j).getFabric().ordinal() > shirts.get(j + 1).getFabric().ordinal()) {
-                                Utils.swap(shirts, j, j+1);
+                                Utils.swap(shirts, j, j + 1);
                             }
                         } else { // DESC
                             if (shirts.get(j).getFabric().ordinal() < shirts.get(j + 1).getFabric().ordinal()) {
-                                Utils.swap(shirts, j, j+1);
+                                Utils.swap(shirts, j, j + 1);
                             }
                         }
                         break;
@@ -157,11 +156,11 @@ public class BubbleSort {
 //        }
 
         // step 3 - Get the ones of the same Size in a sublist
-        MainClass.SublistBounds[] bounds = new MainClass.SublistBounds[7];
+        SublistBounds[] bounds = new SublistBounds[7];
         int counter = 0; // shirts.get(counter) <-- 0
         if (sortType == true) {//ASC
             for (int i = 0; i < 7; i++) {
-                bounds[i] = new MainClass.SublistBounds();
+                bounds[i] = new SublistBounds();
                 if (sBySize[i] == 0) {
                     bounds[i].start = -1;
                     bounds[i].end = -1;
@@ -175,7 +174,7 @@ public class BubbleSort {
             }
         } else {//DESC
             for (int i = 6; i >= 0; i--) {
-                bounds[i] = new MainClass.SublistBounds();
+                bounds[i] = new SublistBounds();
                 if (sBySize[i] == 0) {
                     bounds[i].start = -1;
                     bounds[i].end = -1;
