@@ -99,9 +99,7 @@ public class QuickSort {
 
     // quicksort
     private static void quickSort(QuickSort qs, List<TShirt> shirts, boolean sortType, int sortByProperty) {
-        System.out.println("/// ---------------------------------- ///");
-        double startTime;
-        double endTime;
+        double startTime, endTime;
         switch (sortByProperty) {
             // Size - 1
             case 1:
@@ -170,8 +168,7 @@ public class QuickSort {
         6. Make a qs per Fabric
          */
         List<List<TShirt>> subLists = new ArrayList<>(); // instantiate a List of Lists!
-        double startTime;
-        double endTime;
+        double startTime, endTime;
         // step 1 - Make a qs per Size ASC
         startTime = System.currentTimeMillis();
         List<TShirt> shirtsBySize = qs.sort(shirts, 0, shirts.size() - 1, sortType, 1);
@@ -221,22 +218,18 @@ public class QuickSort {
                 counter += sBySize[i];
             }
         }
-
         // step 4 - Make a qs per Color on the previous sublist
         List<TShirt> bySizeAndColor = new ArrayList<>();
         for (List<TShirt> tlist : subLists) {
-
             bySizeAndColor.addAll(qs.sort(tlist, 0, tlist.size() - 1, sortType, 2));
             tlist = bySizeAndColor;
             //System.out.println("Sorted by Size and color: " + tlist.toString());
         }
-
         //step5&6 my version , find which TShirts have the same Color on the
         //previous sorted list (from step 4) and sort them per Fabric
         List<TShirt> bySizeColorAndFabric = new ArrayList<>();
         List<TShirt> temp = new ArrayList<>();
-        int currentSize = 0;
-        int currentColor = 0;
+        int currentSize = 0, currentColor = 0;
         for (TShirt tShirt : bySizeAndColor) {
             if (tShirt.getColor().ordinal() == currentColor && tShirt.getSize().ordinal() == currentSize) {
                 //found same tshirt size and color, add to temp list

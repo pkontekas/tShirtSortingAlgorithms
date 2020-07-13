@@ -67,9 +67,7 @@ public class BubbleSort {
 
     // bubbleSort
     private static void bubbleSort(BubbleSort bubbleSort, List<TShirt> shirts, boolean sortType, int sortByProperty) {
-        System.out.println("/// ------------------------- ///");
-        double startTime;
-        double endTime;
+        double startTime, endTime;
         switch (sortByProperty) {
             // Size - 1
             case 1:
@@ -136,8 +134,7 @@ public class BubbleSort {
         6. Make a BUBBLESORT per Fabric
          */
         List<List<TShirt>> subLists = new ArrayList<>(); // instantiate a List of Lists!
-        double startTime;
-        double endTime;
+        double startTime, endTime;
         startTime = System.currentTimeMillis();
         // step 1 - Make a BUBBLESORT per Size
         List<TShirt> shirtsBySize = bubble.sort(shirts, sortType, 1);
@@ -200,8 +197,7 @@ public class BubbleSort {
         //previous sorted list (from step 4) and sort them per Fabric
         List<TShirt> bySizeColorAndFabric = new ArrayList<>();
         List<TShirt> temp = new ArrayList<>();
-        int currentSize = 0;
-        int currentColor = 0;
+        int currentSize = 0, currentColor = 0;
         for (TShirt tShirt : bySizeAndColor) {
             if (tShirt.getColor().ordinal() == currentColor && tShirt.getSize().ordinal() == currentSize) {
                 //found same tshirt size and color, add to temp list

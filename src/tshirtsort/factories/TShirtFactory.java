@@ -10,7 +10,7 @@ import tshirtsort.randomizer.RandomTShirt;
  */
 public class TShirtFactory {
 
-    public List<TShirt> tShirtGenerateX(int x) {
+    public static List<TShirt> tShirtGenerateX(int x) {
         RandomTShirt rt = new RandomTShirt();
         List<TShirt> listOfTShirts = new ArrayList<>();
 

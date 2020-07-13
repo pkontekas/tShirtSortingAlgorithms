@@ -15,8 +15,7 @@ public class MainClass {
     public static void main(String[] args) {
 
         //Make 40 random T-Shirts through factory
-        TShirtFactory tFactory = new TShirtFactory();
-        shirts = tFactory.tShirtGenerateX(40);
+        shirts = TShirtFactory.tShirtGenerateX(40);
 
         System.out.println("\nWelcome to our Custom T-SHIRT PeopleFactory!\n");
         System.out.println("Your Warehouse recently received these 40 T-Shirts : ");

@@ -86,6 +86,7 @@ public class TShirt {
 
     @Override
     public String toString() {
-        return "TShirt{" + "Type = " + type + ", Size = " + size + ", Color = " + color + ", Fabric = " + fabric + ", Price = " + price + '}';
+        String strPrice = String.format("%.3f", price);
+        return "TShirt{" + "Type = " + type + ", Size = " + size + ", Color = " + color + ", Fabric = " + fabric + ", Price = " + strPrice + '}';
     }
 }

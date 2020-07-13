@@ -6,7 +6,7 @@ import java.util.Scanner;
  * @author pkontekas
  */
 public class Validator {
-    
+
     public static int getValidMenuChoice(int numChoices, Scanner scan) {
         //validation for number of Choices up to numChoices, for Menus and not only
         int number;
@@ -21,8 +21,7 @@ public class Validator {
         return number;
     }
 
-    public static boolean yesNoChoice(Scanner scan) 
-    //method for Yes/No Choices
+    public static boolean yesNoChoice(Scanner scan) //method for Yes/No Choices not used yet
     {
         String decision;
         boolean choice;

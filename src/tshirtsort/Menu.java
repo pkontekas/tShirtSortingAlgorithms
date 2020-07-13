@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package tshirtsort;
 
 import java.util.Scanner;
@@ -13,7 +8,6 @@ import tshirtsort.sorting.QuickSort;
 import tshirtsort.utils.Validator;
 
 /**
- *
  * @author pkontekas
  */
 public class Menu {
@@ -70,7 +64,7 @@ public class Menu {
                     QuickSort.performQuickSortPerProperty(quick, shirts, false);
                     break;
                 case 6:
-                    System.out.println("Thank you, have a nice Day!");
+                    System.out.println("\nThank you, have a nice Day!");
                     break;
             }
         }
@@ -104,7 +98,7 @@ public class Menu {
                     BubbleSort.performBubbleSortPerProperty(bubble, shirts, false);
                     break;
                 case 6:
-                    System.out.println("Thank you, have a nice Day!");
+                    System.out.println("\nThank you, have a nice Day!");
                     break;
             }
         }
@@ -138,7 +132,7 @@ public class Menu {
                     BucketSort.performBucketSortPerProperty(bucket, shirts, false);
                     break;
                 case 6:
-                    System.out.println("Thank you, have a nice Day!");
+                    System.out.println("\nThank you, have a nice Day!");
                     break;
             }
         }

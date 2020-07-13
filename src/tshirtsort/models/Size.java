@@ -7,36 +7,23 @@ package tshirtsort.models;
 /*
        .22 .23 .25 .30 .35 .45   .60  
 Size, {XS, S,   M, L,  XL, XXL, XXXL}
-
  */
 public enum Size {
     XS, S, M, L, XL, XXL, XXXL;
 
-    public double getSizePrice(Size size) {
-        double result = 0;
-        switch (size) {
-            case XS:
-                result = 0.22;
-                break;
-            case S:
-                result = 0.23;
-                break;
-            case M:
-                result = 0.25;
-                break;
-            case L:
-                result = 0.30;
-                break;
-            case XL:
-                result = 0.35;
-                break;
-            case XXL:
-                result = 0.40;
-                break;
-            case XXXL:
-                result = 0.60;
-                break;
-        }
-        return result;
+    static {
+        XS.price = 0.22;
+        S.price = 0.23;
+        M.price = 0.25;
+        L.price = 0.30;
+        XL.price = 0.35;
+        XXL.price = 0.45;
+        XXL.price = 0.60;
+    }
+
+    private double price;
+
+    public double getPrice() {
+        return price;
     }
 }
