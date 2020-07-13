@@ -1,7 +1,5 @@
 package tshirtsort.models;
 
-import java.util.Objects;
-
 /**
  * @author pkontekas
  */
@@ -88,6 +86,6 @@ public class TShirt {
 
     @Override
     public String toString() {
-        return "TShirt{" + "type = " + type + ", size = " + size + ", color = " + color + ", fabric = " + fabric + ", price = " + price + '}';
+        return "TShirt{" + "Type = " + type + ", Size = " + size + ", Color = " + color + ", Fabric = " + fabric + ", Price = " + price + '}';
     }
 }

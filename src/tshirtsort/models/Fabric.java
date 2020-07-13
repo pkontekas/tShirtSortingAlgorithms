@@ -12,29 +12,29 @@ Fabric, {WOOL, COTTON, POLYESTER, RAYON, LINEN, CASHMERE, SILK}
 public enum Fabric {
     WOOL, COTTON, POLYESTER, RAYON, LINEN, CASHMERE, SILK;
 
-    public float getFabricPrice(int ordinal) {
-        float result = 0;
-        switch (ordinal) {
-            case 0:
-                result = 2.5f;
+    public double getFabricPrice(Fabric fabric) {
+        double result = 0;
+        switch (fabric) {
+            case WOOL:
+                result = 2.5;
                 break;
-            case 1:
-                result = 4.5f;
+            case COTTON:
+                result = 4.5;
                 break;
-            case 2:
-                result = 5.0f;
+            case POLYESTER:
+                result = 5.0;
                 break;
-            case 3:
-                result = 7.5f;
+            case RAYON:
+                result = 7.5;
                 break;
-            case 4:
-                result = 8.2f;
+            case LINEN:
+                result = 8.2;
                 break;
-            case 5:
-                result = 12.3f;
+            case CASHMERE:
+                result = 12.3;
                 break;
-            case 6:
-                result = 22.0f;
+            case SILK:
+                result = 22.0;
                 break;
         }
         return result;

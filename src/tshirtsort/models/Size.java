@@ -12,29 +12,29 @@ Size, {XS, S,   M, L,  XL, XXL, XXXL}
 public enum Size {
     XS, S, M, L, XL, XXL, XXXL;
 
-    public float getSizePrice(int ordinal) {
-        float result = 0;
-        switch (ordinal) {
-            case 0:
-                result = 0.22f;
+    public double getSizePrice(Size size) {
+        double result = 0;
+        switch (size) {
+            case XS:
+                result = 0.22;
                 break;
-            case 1:
-                result = 0.23f;
+            case S:
+                result = 0.23;
                 break;
-            case 2:
-                result = 0.25f;
+            case M:
+                result = 0.25;
                 break;
-            case 3:
-                result = 0.30f;
+            case L:
+                result = 0.30;
                 break;
-            case 4:
-                result = 0.35f;
+            case XL:
+                result = 0.35;
                 break;
-            case 5:
-                result = 0.40f;
+            case XXL:
+                result = 0.40;
                 break;
-            case 6:
-                result = 0.60f;
+            case XXXL:
+                result = 0.60;
                 break;
         }
         return result;

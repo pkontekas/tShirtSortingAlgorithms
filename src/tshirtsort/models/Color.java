@@ -10,29 +10,29 @@ Color, {RED, ORANGE, YELLOW, GREEN, BLUE, INDIGO, VIOLET}
 public enum Color {
     RED, ORANGE, YELLOW, GREEN, BLUE, INDIGO, VIOLET;
 
-    public float getColorPrice(int ordinal) {
-        float result = 0;
-        switch (ordinal) {
-            case 0:
-                result = 0.5f;
+    public double getColorPrice(Color color) {
+        double result = 0;
+        switch (color) {
+            case RED:
+                result = 0.5;
                 break;
-            case 1:
-                result = 0.10f;
+            case ORANGE:
+                result = 0.10;
                 break;
-            case 2:
-                result = 0.15f;
+            case YELLOW:
+                result = 0.15;
                 break;
-            case 3:
-                result = 0.20f;
+            case GREEN:
+                result = 0.20;
                 break;
-            case 4:
-                result = 0.25f;
+            case BLUE:
+                result = 0.25;
                 break;
-            case 5:
-                result = 0.30f;
+            case INDIGO:
+                result = 0.30;
                 break;
-            case 6:
-                result = 0.35f;
+            case VIOLET:
+                result = 0.35;
                 break;
         }
         return result;
