@@ -35,7 +35,6 @@ public enum Color {
                 result = 0.35f;
                 break;
         }
-
         return result;
     }
 }

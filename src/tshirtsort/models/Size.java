@@ -37,7 +37,6 @@ public enum Size {
                 result = 0.60f;
                 break;
         }
-
         return result;
     }
 }

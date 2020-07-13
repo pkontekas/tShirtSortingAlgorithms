@@ -18,12 +18,12 @@ Fabric, {WOOL, COTTON, POLYESTER, RAYON, LINEN, CASHMERE, SILK}
  */
 public class TShirt {
 
-    private final float basePrice = 8;
+    private final double basePrice = 8;
     private String type;
     private Color color;
     private Size size;
     private Fabric fabric;
-    private float price;
+    private double price;
     public static String[] types;
 
     static {
@@ -35,7 +35,7 @@ public class TShirt {
     public TShirt() {
     }
 
-    public TShirt(String name, Color color, Size size, Fabric fabric, float price) {
+    public TShirt(String name, Color color, Size size, Fabric fabric, double price) {
         this.type = name;
         this.color = color;
         this.size = size;
@@ -43,14 +43,14 @@ public class TShirt {
         setPrice(price); // this.price = price; this is wrong!!!
     }
 
-    public float getPrice() {
+    public double getPrice() {
         return price;
     }
 
     // base price = 8
     // setPrice(22.75)
-    // price 8+22.75 = 30.75 
-    public void setPrice(float price) {
+    // price 8+22.75 = 30.75 + material price
+    public void setPrice(double price) {
         this.price = this.basePrice + price;
     }
 
@@ -84,44 +84,6 @@ public class TShirt {
 
     public void setFabric(Fabric fabric) {
         this.fabric = fabric;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 53 * hash + Objects.hashCode(this.type);
-        hash = 53 * hash + Objects.hashCode(this.color);
-        hash = 53 * hash + Objects.hashCode(this.size);
-        hash = 53 * hash + Objects.hashCode(this.fabric);
-        hash = 53 * hash + Float.floatToIntBits(this.price);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final TShirt other = (TShirt) obj;
-        if (Float.floatToIntBits(this.price) != Float.floatToIntBits(other.price)) {
-            return false;
-        }
-        if (!Objects.equals(this.type, other.type)) {
-            return false;
-        }
-        if (this.color != other.color) {
-            return false;
-        }
-        if (this.size != other.size) {
-            return false;
-        }
-        return this.fabric == other.fabric;
     }
 
     @Override
