@@ -9,7 +9,9 @@ import tshirtsort.utils.Utils;
  * @author pkontekas
  */
 public class MainClass {
-
+    
+// github LINK: https://github.com/pkontekas/tShirtSortingAlgorithms
+    
     protected static List<TShirt> shirts;
 
     public static void main(String[] args) {
