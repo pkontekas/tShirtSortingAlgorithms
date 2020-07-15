@@ -9,6 +9,7 @@ import tshirtsort.models.TShirt;
 public class Utils {
 
     public static void printShirtList(List<TShirt> shirts) {
+        //method to print a list of tshirts with toString
         System.out.println("/// ---------------------------------- ///");
         shirts.forEach((shirt) -> {
             System.out.println(shirt);
@@ -17,7 +18,7 @@ public class Utils {
     }
 
     public static void swap(List<TShirt> shirts, int a, int b) {
-        //method to swap a with b in a list
+        //method to swap integers a with b in a list
         TShirt temp = shirts.get(a);
         shirts.set(a, shirts.get(b));
         shirts.set(b, temp);

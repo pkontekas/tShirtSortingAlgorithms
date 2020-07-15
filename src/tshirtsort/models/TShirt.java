@@ -41,8 +41,7 @@ public class TShirt {
         setPrice(price); // this.price = price; this is wrong!!!
     }
 
-    // base price = 8
-    // setPrice(22.75)
+    // base price = 8, setPrice(22.75)
     // price 8+22.75 = 30.75 + material price
     public void setPrice(double price) {
         this.price = this.basePrice + price;
@@ -62,6 +61,7 @@ public class TShirt {
 
     @Override
     public String toString() {
+        //toString method for printing tshirts with 3 decimal digits in price
         String strPrice = String.format("%.3f", price);
         return "TShirt{" + "Type = " + type + ", Size = " + size + ", Color = " + color + ", Fabric = " + fabric + ", Price = " + strPrice + '}';
     }

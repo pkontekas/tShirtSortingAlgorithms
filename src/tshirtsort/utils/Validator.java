@@ -27,7 +27,7 @@ public class Validator {
         boolean choice;
         do {
             System.out.print("(Y)es/(N)o ?");
-            //next line seems reduntant but its to avoid an issue/bug with the Scanner feature
+            //next line seems redundant but its to avoid an issue/bug with the Scanner feature
             scan.nextLine();
             decision = scan.nextLine();
             switch (decision.toLowerCase()) {

@@ -8,25 +8,26 @@ import tshirtsort.models.TShirt;
  */
 public class SublistBounds {
 
-    private int start;
-    private int end;
+    private int startPosition;
+    private int endPosition;
 
     protected static List<List<TShirt>> getSubListsOfSameSize(boolean sortType, int[] sBySize, List<List<TShirt>> subLists, List<TShirt> shirtsBySize) {
-
-        // step 3 - Get the ones of the same Size in a sublist
+    // boolean sortType, sortType == true, ASC --  sortType == false, DESC
+        
+        // step 3 - for the perform per property sort methods - Get the ones of the same Size in a sublist
         SublistBounds[] bounds = new SublistBounds[7];
         int counter = 0; // shirts.get(counter) <-- 0 
         if (sortType == true) {//ASC
             for (int i = 0; i < 7; i++) {
                 bounds[i] = new SublistBounds();
                 if (sBySize[i] == 0) {
-                    bounds[i].start = -1;
-                    bounds[i].end = -1;
+                    bounds[i].startPosition = -1;
+                    bounds[i].endPosition = -1;
                 } else {
-                    bounds[i].start = counter; // 0
-                    bounds[i].end = counter + sBySize[i] - 1;
-                    subLists.add(shirtsBySize.subList(bounds[i].start, bounds[i].end + 1)); // found the error end was exclusive, so we needed end + 1 !
-                    //System.out.println(shirtsBySize.subList(bounds[i].start, bounds[i].end+1));
+                    bounds[i].startPosition = counter; // 0
+                    bounds[i].endPosition = counter + sBySize[i] - 1;
+                    subLists.add(shirtsBySize.subList(bounds[i].startPosition, bounds[i].endPosition + 1)); // found the error endPosition was exclusive, so we needed endPosition + 1 !
+                    //System.out.println(shirtsBySize.subList(bounds[i].startPosition, bounds[i].endPosition+1));
                 }
                 counter += sBySize[i];
             }
@@ -34,13 +35,13 @@ public class SublistBounds {
             for (int i = 6; i >= 0; i--) {
                 bounds[i] = new SublistBounds();
                 if (sBySize[i] == 0) {
-                    bounds[i].start = -1;
-                    bounds[i].end = -1;
+                    bounds[i].startPosition = -1;
+                    bounds[i].endPosition = -1;
                 } else {
-                    bounds[i].start = counter; // 0
-                    bounds[i].end = counter + sBySize[i] - 1;
-                    subLists.add(shirtsBySize.subList(bounds[i].start, bounds[i].end + 1));
-                    //System.out.println(shirtsBySize.subList(bounds[i].start, bounds[i].end+1));
+                    bounds[i].startPosition = counter; // 0
+                    bounds[i].endPosition = counter + sBySize[i] - 1;
+                    subLists.add(shirtsBySize.subList(bounds[i].startPosition, bounds[i].endPosition + 1));
+                    //System.out.println(shirtsBySize.subList(bounds[i].startPosition, bounds[i].endPosition+1));
                 }
                 counter += sBySize[i];
             }
