@@ -12,31 +12,25 @@ public class QuickSort {
 
     // low = shirts.get(low), low = 0
     // high = shirts.get(high), high = 6
-    // boolean sortType, sortType == true, ASC --  sortType == false, DESC
     // int sortByProperty 
     // sortByProperty == 1 -- Size
     // sortByProperty == 2 -- Color 
     // sortByProperty == 3 -- Fabric 
-    public List<TShirt> sort(List<TShirt> shirts, int low, int high, boolean sortType, int sortByProperty) {
+    public List<TShirt> sort(List<TShirt> shirts, int low, int high, boolean sortAscending, int sortByProperty) {
         if (low < high) {
             /* pi is partitioning index, shirts[pi] is  
               now at right place */
-            int pi = partition(shirts, low, high, sortType, sortByProperty);
+            int pi = partition(shirts, low, high, sortAscending, sortByProperty);
 
             // Recursively sort elements before 
             // partition and after partition 
-            sort(shirts, low, pi - 1, sortType, sortByProperty);
-            sort(shirts, pi + 1, high, sortType, sortByProperty);
+            sort(shirts, low, pi - 1, sortAscending, sortByProperty);
+            sort(shirts, pi + 1, high, sortAscending, sortByProperty);
         }
         return shirts;
     }
 
-    // boolean sortType, sortType == true, ASC --  sortType == false, DESC
-    // int sortByProperty 
-    // sortByProperty == 1 -- Size
-    // sortByProperty == 2 -- Color 
-    // sortByProperty == 3 -- Fabric 
-    int partition(List<TShirt> shirts, int low, int high, boolean sortType, int sortByProperty) {
+    int partition(List<TShirt> shirts, int low, int high, boolean sortAscending, int sortByProperty) {
         TShirt pivot = shirts.get(high);
         int i = (low - 1); // index of smaller element 
         for (int j = low; j < high; j++) {
@@ -44,7 +38,7 @@ public class QuickSort {
             switch (sortByProperty) {
                 // Size
                 case 1:
-                    if (sortType) {
+                    if (sortAscending) {
                         if (shirts.get(j).getSize().ordinal() < pivot.getSize().ordinal()) {
                             i++;
                             // swap shirts[i] and shirts[j] 
@@ -59,7 +53,7 @@ public class QuickSort {
                     break;
                 // Color
                 case 2:
-                    if (sortType) {
+                    if (sortAscending) {
                         if (shirts.get(j).getColor().ordinal() < pivot.getColor().ordinal()) {
                             i++;
                             Utils.swap(shirts, i, j);
@@ -73,7 +67,7 @@ public class QuickSort {
                     break;
                 // Fabric
                 case 3:
-                    if (sortType) {
+                    if (sortAscending) {
                         if (shirts.get(j).getFabric().ordinal() < pivot.getFabric().ordinal()) {
                             i++;
                             // swap shirts[i] and shirts[j] 
@@ -94,16 +88,16 @@ public class QuickSort {
     }
 
     // quicksort
-    private static void quickSort(QuickSort qs, List<TShirt> shirts, boolean sortType, int sortByProperty) {
+    private static void quickSort(QuickSort qs, List<TShirt> shirts, boolean sortAscending, int sortByProperty) {
         double startTime, endTime;
         switch (sortByProperty) {
             // Size - 1
             case 1:
                 startTime = System.currentTimeMillis();
-                qs.sort(shirts, 0, shirts.size() - 1, sortType, 1);
+                qs.sort(shirts, 0, shirts.size() - 1, sortAscending, 1);
                 endTime = System.currentTimeMillis();
 
-                if (sortType) {
+                if (sortAscending) {
                     System.out.println("Time Lapsed for Quicksort by Size ASC: " + (endTime - startTime));
                 } else {
                     System.out.println("Time Lapsed for Quicksort by Size DESC: " + (endTime - startTime));
@@ -112,10 +106,10 @@ public class QuickSort {
             // Color - 2
             case 2:
                 startTime = System.currentTimeMillis();
-                qs.sort(shirts, 0, shirts.size() - 1, sortType, 2);
+                qs.sort(shirts, 0, shirts.size() - 1, sortAscending, 2);
                 endTime = System.currentTimeMillis();
 
-                if (sortType) {
+                if (sortAscending) {
                     System.out.println("Time Lapsed for Quicksort by Color ASC: " + (endTime - startTime));
                 } else {
                     System.out.println("Time Lapsed for Quicksort by Color DESC: " + (endTime - startTime));
@@ -124,10 +118,10 @@ public class QuickSort {
             // Fabric - 3
             case 3:
                 startTime = System.currentTimeMillis();
-                qs.sort(shirts, 0, shirts.size() - 1, sortType, 3);
+                qs.sort(shirts, 0, shirts.size() - 1, sortAscending, 3);
                 endTime = System.currentTimeMillis();
 
-                if (sortType) {
+                if (sortAscending) {
                     System.out.println("Time Lapsed for Quicksort by Fabric ASC: " + (endTime - startTime));
                 } else {
                     System.out.println("Time Lapsed for Quicksort by Fabric DESC: " + (endTime - startTime));
@@ -152,9 +146,7 @@ public class QuickSort {
         quickSort(qs, shirts, false, 3); // Fabric DESC
     }
 
-    public static void performQuickSortPerProperty(QuickSort qs, List<TShirt> shirts, boolean sortType) {
-        // sortType -> true = ASC, false = DESC
-
+    public static void performQuickSortPerProperty(QuickSort qs, List<TShirt> shirts, boolean sortAscending) {
         /*
         1. Make a qs per Size
         2. Find which TShirts have the same Size on the sorted (previous)list
@@ -167,9 +159,9 @@ public class QuickSort {
         double startTime, endTime;
         //variables to count time elapsed
         startTime = System.currentTimeMillis();
-        
+
         // step 1 - Make a qs per Size ASC
-        List<TShirt> shirtsBySize = qs.sort(shirts, 0, shirts.size() - 1, sortType, 1);
+        List<TShirt> shirtsBySize = qs.sort(shirts, 0, shirts.size() - 1, sortAscending, 1);
 
         // step 2 - Find which TShirts have the same Size on the sorted (previous)list
         int[] sBySize = new int[7];
@@ -185,12 +177,12 @@ public class QuickSort {
 //        }
 
         // step 3 - Get the ones of the same Size in a sublist
-        subLists = SublistBounds.getSubListsOfSameSize(sortType, sBySize, subLists, shirtsBySize);
+        subLists = SublistBounds.getSubListsOfSameSize(sortAscending, sBySize, subLists, shirtsBySize);
 
         // step 4 - Make a qs per Color on the previous sublist
         List<TShirt> bySizeAndColor = new ArrayList<>();
         for (List<TShirt> tlist : subLists) {
-            bySizeAndColor.addAll(qs.sort(tlist, 0, tlist.size() - 1, sortType, 2));
+            bySizeAndColor.addAll(qs.sort(tlist, 0, tlist.size() - 1, sortAscending, 2));
             tlist = bySizeAndColor;
             //System.out.println("Sorted by Size and color: " + tlist.toString());
         }
@@ -206,7 +198,7 @@ public class QuickSort {
             } else {
                 //different tshirt, put temp list to bySizeColorAndFabric List then empty temp list
                 if (temp.size() > 0) {
-                    temp = qs.sort(temp, 0, temp.size() - 1, sortType, 3);
+                    temp = qs.sort(temp, 0, temp.size() - 1, sortAscending, 3);
                     bySizeColorAndFabric.addAll(temp);
                     temp.clear();
                 }
@@ -216,12 +208,12 @@ public class QuickSort {
             }
         }
         if (temp.size() > 0) {
-            temp = qs.sort(temp, 0, temp.size() - 1, sortType, 3);
+            temp = qs.sort(temp, 0, temp.size() - 1, sortAscending, 3);
             bySizeColorAndFabric.addAll(temp);
         }
         endTime = System.currentTimeMillis();
         System.out.println("/// ---------------------------------- ///");
-        if (sortType) {
+        if (sortAscending) {
             System.out.println("Time Lapsed for QuickSort per Property ASC: " + (endTime - startTime));
         } else {
             System.out.println("Time Lapsed for QuickSort per Property DESC: " + (endTime - startTime));

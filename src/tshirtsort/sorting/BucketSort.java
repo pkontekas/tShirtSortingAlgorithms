@@ -10,12 +10,11 @@ import tshirtsort.utils.Utils;
  */
 public class BucketSort {
 
-    // sortType = true - ASC, false = DESC
     // int sortByProperty 
     // sortByProperty == 1 -- Size
     // sortByProperty == 2 -- Color 
     // sortByProperty == 3 -- Fabric 
-    public List<TShirt> sort(List<TShirt> shirts, int maxValue, boolean sortType, int sortByProperty) {
+    public List<TShirt> sort(List<TShirt> shirts, int maxValue, boolean sortAscending, int sortByProperty) {
         // Bucket Sort
         List<TShirt> sortedShirts = new ArrayList<>();
         List<TShirt>[] buckets = new ArrayList[maxValue + 1];
@@ -43,7 +42,7 @@ public class BucketSort {
                 }
             }
         }
-        if (sortType == true) {
+        if (sortAscending == true) {
             for (int i = 0; i <= maxValue; i++) {
                 for (int j = 0; j < buckets[i].size(); j++) {
                     sortedShirts.add(buckets[i].get(j));
@@ -75,8 +74,7 @@ public class BucketSort {
     }
 
     // bucketSort
-    public static void bucketSort(BucketSort bucket, List<TShirt> shirts, boolean sortType, int sortByProperty) {
-        // sortType = true - ASC, false = DESC
+    public static void bucketSort(BucketSort bucket, List<TShirt> shirts, boolean sortAscending, int sortByProperty) {
         // int sortByProperty 
         // sortByProperty == 1 -- Size
         // sortByProperty == 2 -- Color 
@@ -87,10 +85,10 @@ public class BucketSort {
             // Size - 1
             case 1:
                 startTime = System.currentTimeMillis();
-                sorted_shirts = bucket.sort(shirts, 6, sortType, 1);
+                sorted_shirts = bucket.sort(shirts, 6, sortAscending, 1);
                 endTime = System.currentTimeMillis();
 
-                if (sortType) {
+                if (sortAscending) {
                     System.out.println("Time Lapsed for Bucketsort by Size ASC: " + (endTime - startTime));
                 } else {
                     System.out.println("Time Lapsed for Bucketsort by Size DESC: " + (endTime - startTime));
@@ -99,10 +97,10 @@ public class BucketSort {
             // Color - 2
             case 2:
                 startTime = System.currentTimeMillis();
-                sorted_shirts = bucket.sort(shirts, 6, sortType, 2);
+                sorted_shirts = bucket.sort(shirts, 6, sortAscending, 2);
                 endTime = System.currentTimeMillis();
 
-                if (sortType) {
+                if (sortAscending) {
                     System.out.println("Time Lapsed for Bucketsort by Color ASC: " + (endTime - startTime));
                 } else {
                     System.out.println("Time Lapsed for Bucketsort by Color DESC: " + (endTime - startTime));
@@ -111,10 +109,10 @@ public class BucketSort {
             // Fabric - 3
             case 3:
                 startTime = System.currentTimeMillis();
-                sorted_shirts = bucket.sort(shirts, 6, sortType, 3);
+                sorted_shirts = bucket.sort(shirts, 6, sortAscending, 3);
                 endTime = System.currentTimeMillis();
 
-                if (sortType) {
+                if (sortAscending) {
                     System.out.println("Time Lapsed for Bucketsort by Fabric ASC: " + (endTime - startTime));
                 } else {
                     System.out.println("Time Lapsed for Bucketsort by Fabric DESC: " + (endTime - startTime));
@@ -124,9 +122,7 @@ public class BucketSort {
         Utils.printShirtList(sorted_shirts);
     }
 
-    public static void performBucketSortPerProperty(BucketSort bucket, List<TShirt> shirts, boolean sortType) {
-        // sortType -> true = ASC, false = DESC
-
+    public static void performBucketSortPerProperty(BucketSort bucket, List<TShirt> shirts, boolean sortAscending) {
         /*
         1. Make a BUCKETSORT per Size
         2. Find which TShirts have the same Size on the sorted (previous)list
@@ -141,7 +137,7 @@ public class BucketSort {
         startTime = System.currentTimeMillis();
 
         // step 1 - Make a BUCKETSORT per Size
-        List<TShirt> shirtsBySize = bucket.sort(shirts, 6, sortType, 1);
+        List<TShirt> shirtsBySize = bucket.sort(shirts, 6, sortAscending, 1);
 
         // step 2 - Find which TShirts have the same Size on the sorted (previous)list
         int[] sBySize = new int[7];
@@ -153,12 +149,12 @@ public class BucketSort {
         }
 
         // step 3 - Get the ones of the same Size in a sublist
-        subLists = SublistBounds.getSubListsOfSameSize(sortType, sBySize, subLists, shirtsBySize);
+        subLists = SublistBounds.getSubListsOfSameSize(sortAscending, sBySize, subLists, shirtsBySize);
 
         // step 4 - Make a BUCKETSORT per Color on the previous sublist
         List<TShirt> bySizeAndColor = new ArrayList<>();
         for (List<TShirt> tlist : subLists) {
-            bySizeAndColor.addAll(bucket.sort(tlist, 6, sortType, 2));
+            bySizeAndColor.addAll(bucket.sort(tlist, 6, sortAscending, 2));
             tlist = bySizeAndColor;
             //System.out.println("Sorted by Size and color: " + tlist.toString());
         }
@@ -175,7 +171,7 @@ public class BucketSort {
             } else {
                 //different tshirt, put temp list to bySize and Color and Fabric then empty temp list
                 if (temp.size() > 0) {
-                    temp = bucket.sort(temp, 6, sortType, 3);
+                    temp = bucket.sort(temp, 6, sortAscending, 3);
                     bySizeColorAndFabric.addAll(temp);
                     temp.clear();
                 }
@@ -185,12 +181,12 @@ public class BucketSort {
             }
         }
         if (temp.size() > 0) {
-            temp = bucket.sort(temp, 6, sortType, 3);
+            temp = bucket.sort(temp, 6, sortAscending, 3);
             bySizeColorAndFabric.addAll(temp);
         }
         endTime = System.currentTimeMillis();
         System.out.println("/// ---------------------------------- ///");
-        if (sortType) {
+        if (sortAscending) {
             System.out.println("Time Lapsed for BucketSort per Property ASC: " + (endTime - startTime));
         } else {
             System.out.println("Time Lapsed for BucketSort per Property DESC: " + (endTime - startTime));

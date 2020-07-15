@@ -10,12 +10,11 @@ import tshirtsort.utils.Utils;
  */
 public class BubbleSort {
 
-    // boolean sortType, sortType == true, ASC --  sortType == false, DESC
     // int sortByProperty 
     // sortByProperty == 1 -- Size
     // sortByProperty == 2 -- Color 
     // sortByProperty == 3 -- Fabric 
-    public List<TShirt> sort(List<TShirt> shirts, boolean sortType, int sortByProperty) {
+    public List<TShirt> sort(List<TShirt> shirts, boolean sortAscending, int sortByProperty) {
         int n = shirts.size();
         for (int i = 0; i < n - 1; i++) {
             for (int j = 0; j < n - i - 1; j++) {
@@ -23,7 +22,7 @@ public class BubbleSort {
                     // Size - 1
                     case 1:
                         // ASC
-                        if (sortType) {
+                        if (sortAscending) {
                             if (shirts.get(j).getSize().ordinal() > shirts.get(j + 1).getSize().ordinal()) {
                                 Utils.swap(shirts, j, j + 1);
                             }
@@ -36,7 +35,7 @@ public class BubbleSort {
                     // Color - 2    
                     case 2:
                         // ASC
-                        if (sortType) {
+                        if (sortAscending) {
                             if (shirts.get(j).getColor().ordinal() > shirts.get(j + 1).getColor().ordinal()) {
                                 Utils.swap(shirts, j, j + 1);
                             }
@@ -49,7 +48,7 @@ public class BubbleSort {
                     // Fabric - 3
                     case 3:
                         // ASC
-                        if (sortType) {
+                        if (sortAscending) {
                             if (shirts.get(j).getFabric().ordinal() > shirts.get(j + 1).getFabric().ordinal()) {
                                 Utils.swap(shirts, j, j + 1);
                             }
@@ -66,15 +65,15 @@ public class BubbleSort {
     }
 
     // bubbleSort
-    private static void bubbleSort(BubbleSort bubbleSort, List<TShirt> shirts, boolean sortType, int sortByProperty) {
+    private static void bubbleSort(BubbleSort bubbleSort, List<TShirt> shirts, boolean sortAscending, int sortByProperty) {
         double startTime, endTime;
         switch (sortByProperty) {
             // Size - 1
             case 1:
                 startTime = System.currentTimeMillis();
-                bubbleSort.sort(shirts, sortType, 1);
+                bubbleSort.sort(shirts, sortAscending, 1);
                 endTime = System.currentTimeMillis();
-                if (sortType) {
+                if (sortAscending) {
                     System.out.println("Time Lapsed for Bubblesort by Size ASC: " + (endTime - startTime));
                 } else {
                     System.out.println("Time Lapsed for Bubblesort by Size DESC: " + (endTime - startTime));
@@ -83,9 +82,9 @@ public class BubbleSort {
             // Color - 2
             case 2:
                 startTime = System.currentTimeMillis();
-                bubbleSort.sort(shirts, sortType, 2);
+                bubbleSort.sort(shirts, sortAscending, 2);
                 endTime = System.currentTimeMillis();
-                if (sortType) {
+                if (sortAscending) {
                     System.out.println("Time Lapsed for Bubblesort by Color ASC: " + (endTime - startTime));
                 } else {
                     System.out.println("Time Lapsed for Bubblesort by Color DESC: " + (endTime - startTime));
@@ -94,10 +93,10 @@ public class BubbleSort {
             // Fabric - 3
             case 3:
                 startTime = System.currentTimeMillis();
-                bubbleSort.sort(shirts, sortType, 3);
+                bubbleSort.sort(shirts, sortAscending, 3);
                 endTime = System.currentTimeMillis();
 
-                if (sortType) {
+                if (sortAscending) {
                     System.out.println("Time Lapsed for Bubblesort by Fabric ASC: " + (endTime - startTime));
                 } else {
                     System.out.println("Time Lapsed for Bubblesort by Fabric DESC: " + (endTime - startTime));
@@ -122,9 +121,7 @@ public class BubbleSort {
         bubbleSort(bubble, shirts, false, 3); // Fabric DESC
     }
 
-    public static void performBubbleSortPerProperty(BubbleSort bubble, List<TShirt> shirts, boolean sortType) {
-        // sortType -> true = ASC, false = DESC
-
+    public static void performBubbleSortPerProperty(BubbleSort bubble, List<TShirt> shirts, boolean sortAscending) {
         /*
         1. Make a BUBBLESORT per Size
         2. Find which TShirts have the same Size on the sorted (previous)list
@@ -137,9 +134,9 @@ public class BubbleSort {
         double startTime, endTime;
         //variables to count time elapsed
         startTime = System.currentTimeMillis();
-        
+
         // step 1 - Make a BUBBLESORT per Size
-        List<TShirt> shirtsBySize = bubble.sort(shirts, sortType, 1);
+        List<TShirt> shirtsBySize = bubble.sort(shirts, sortAscending, 1);
 
         // step 2 - Find which TShirts have the same Size on the sorted (previous)list
         int[] sBySize = new int[7];
@@ -151,12 +148,12 @@ public class BubbleSort {
         }
 
         // step 3 - Get the ones of the same Size in a sublist
-        subLists = SublistBounds.getSubListsOfSameSize(sortType, sBySize, subLists, shirtsBySize);
+        subLists = SublistBounds.getSubListsOfSameSize(sortAscending, sBySize, subLists, shirtsBySize);
 
         // step 4 - Make a BUBBLESORT per Color on the previous sublist
         List<TShirt> bySizeAndColor = new ArrayList<>();
         for (List<TShirt> tlist : subLists) {
-            bySizeAndColor.addAll(bubble.sort(tlist, sortType, 2));
+            bySizeAndColor.addAll(bubble.sort(tlist, sortAscending, 2));
             tlist = bySizeAndColor;
             //System.out.println("Sorted by Size and color: " + tlist.toString());
         }
@@ -173,7 +170,7 @@ public class BubbleSort {
             } else {
                 //different tshirt, put temp list to bySize and Color and Fabric then empty temp list
                 if (temp.size() > 0) {
-                    temp = bubble.sort(temp, sortType, 3);
+                    temp = bubble.sort(temp, sortAscending, 3);
                     bySizeColorAndFabric.addAll(temp);
                     temp.clear();
                 }
@@ -183,12 +180,12 @@ public class BubbleSort {
             }
         }
         if (temp.size() > 0) {
-            temp = bubble.sort(temp, sortType, 3);
+            temp = bubble.sort(temp, sortAscending, 3);
             bySizeColorAndFabric.addAll(temp);
         }
         endTime = System.currentTimeMillis();
         System.out.println("/// ---------------------------------- ///");
-        if (sortType) {
+        if (sortAscending) {
             System.out.println("Time Lapsed for Bubblesort per Property ASC: " + (endTime - startTime));
         } else {
             System.out.println("Time Lapsed for Bubblesort per Property DESC: " + (endTime - startTime));

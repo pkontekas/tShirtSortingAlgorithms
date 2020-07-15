@@ -11,14 +11,12 @@ public class SublistBounds {
     private int startPosition;
     private int endPosition;
 
-    protected static List<List<TShirt>> getSubListsOfSameSize(boolean sortType, int[] sBySize, 
+    protected static List<List<TShirt>> getSubListsOfSameSize(boolean sortAscending, int[] sBySize,
             List<List<TShirt>> subLists, List<TShirt> shirtsBySize) {
-    // boolean sortType, sortType == true, ASC --  sortType == false, DESC
-        
         // step 3 - for the perform per property sort methods - Get the ones of the same Size in a sublist
         SublistBounds[] bounds = new SublistBounds[7];
         int counter = 0; // shirts.get(counter) <-- 0 
-        if (sortType == true) {//ASC
+        if (sortAscending == true) {//ASC
             for (int i = 0; i < 7; i++) {
                 bounds[i] = new SublistBounds();
                 if (sBySize[i] == 0) {
