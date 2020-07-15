@@ -135,7 +135,9 @@ public class BubbleSort {
          */
         List<List<TShirt>> subLists = new ArrayList<>(); // instantiate a List of Lists!
         double startTime, endTime;
+        //variables to count time elapsed
         startTime = System.currentTimeMillis();
+        
         // step 1 - Make a BUBBLESORT per Size
         List<TShirt> shirtsBySize = bubble.sort(shirts, sortType, 1);
 

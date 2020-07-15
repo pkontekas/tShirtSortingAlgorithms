@@ -11,7 +11,8 @@ public class SublistBounds {
     private int startPosition;
     private int endPosition;
 
-    protected static List<List<TShirt>> getSubListsOfSameSize(boolean sortType, int[] sBySize, List<List<TShirt>> subLists, List<TShirt> shirtsBySize) {
+    protected static List<List<TShirt>> getSubListsOfSameSize(boolean sortType, int[] sBySize, 
+            List<List<TShirt>> subLists, List<TShirt> shirtsBySize) {
     // boolean sortType, sortType == true, ASC --  sortType == false, DESC
         
         // step 3 - for the perform per property sort methods - Get the ones of the same Size in a sublist
@@ -26,7 +27,8 @@ public class SublistBounds {
                 } else {
                     bounds[i].startPosition = counter; // 0
                     bounds[i].endPosition = counter + sBySize[i] - 1;
-                    subLists.add(shirtsBySize.subList(bounds[i].startPosition, bounds[i].endPosition + 1)); // found the error endPosition was exclusive, so we needed endPosition + 1 !
+                    subLists.add(shirtsBySize.subList(bounds[i].startPosition, bounds[i].endPosition + 1));
+                    // found the error om above line, endPosition was exclusive, so we needed endPosition + 1 !
                     //System.out.println(shirtsBySize.subList(bounds[i].startPosition, bounds[i].endPosition+1));
                 }
                 counter += sBySize[i];

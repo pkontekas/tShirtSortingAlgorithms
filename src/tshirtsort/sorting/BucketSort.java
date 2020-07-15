@@ -137,6 +137,7 @@ public class BucketSort {
          */
         List<List<TShirt>> subLists = new ArrayList<>(); // instantiate a List of Lists!
         double startTime, endTime;
+        //variables to count time elapsed
         startTime = System.currentTimeMillis();
 
         // step 1 - Make a BUCKETSORT per Size

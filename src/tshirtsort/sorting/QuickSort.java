@@ -165,8 +165,10 @@ public class QuickSort {
          */
         List<List<TShirt>> subLists = new ArrayList<>(); // instantiate a List of Lists!
         double startTime, endTime;
-        // step 1 - Make a qs per Size ASC
+        //variables to count time elapsed
         startTime = System.currentTimeMillis();
+        
+        // step 1 - Make a qs per Size ASC
         List<TShirt> shirtsBySize = qs.sort(shirts, 0, shirts.size() - 1, sortType, 1);
 
         // step 2 - Find which TShirts have the same Size on the sorted (previous)list
